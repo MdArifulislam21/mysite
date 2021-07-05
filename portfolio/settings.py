@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7b*wt&kc$rk%x28g8!pa2y)h2&zpc-71*akz%)1z_xosn8=nfr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'arifuls-portfolio.herokuapp.com']
 
 
 # Application definition
@@ -42,6 +42,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -119,18 +122,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR /'static',
-    BASE_DIR / 'website' / 'static',
+    BASE_DIR /'static'
 
 ]
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # MEDIA_URL = '/media/'
@@ -141,3 +143,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+if os.getcwd() =='/app':
+    DEBUG = False
